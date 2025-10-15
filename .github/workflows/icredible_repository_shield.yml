@@ -1,4 +1,6 @@
 name: "iCredible Repository Backup Process"
+permissions:
+  contents: read 
 
 on:
   push:
@@ -12,9 +14,11 @@ jobs:
          with:
             fetch-depth: 0
     
-       - name: "The iCredible backup operation was triggered by ${{ github.actor }}"
-         uses: icredibletech/git-security@latest
+       - name: "iCredible Git Sec | Backup"
+         uses: berkayy-atas/All-in-One-Repo-Repair-Kit@latest
          with:
-            icredible_activation_code: ${{ secrets.ACTIVATION_CODE }}
-            icredible_encryption_password: ${{ secrets.DENEMELIL_SIFRE }}
+            icredible_activation_code: ${{ secrets.DEV_TEMP }}            
+            icredible_encryption_password: ${{ secrets.ICREDIBLE_ENCRYPTION_PASSWORD }}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            endpoint-preference: 'SINGLE'
             action: 'backup'
